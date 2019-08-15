@@ -1,0 +1,208 @@
+body
+{
+	margin: 0;	
+	background:white; 	
+	text-align: center;
+	overflow: hidden;	/* Pas de scroll bar */
+}
+
+/* Style des boutons */
+button
+{
+	/*color:black;
+	opacity: 0.3;*/
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: right;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 6px;
+}
+#HideAndShow
+{
+	/*color:black;
+	opacity: 0.3;*/
+	background-color: #008CBA;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: right;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+/* Les boutons sont opaques quand la souris passe dessus */
+button:hover
+{
+	opacity: 0.8;
+}
+
+#viewer
+{
+	position: absolute;
+	width: 75%;
+	background: black;
+
+}
+#LeftPanel
+{
+	font-family: arial;
+	position: fixed;
+	bottom: 0px;
+	width: 20%;
+	height: 100%;
+	overflow: auto;
+	background: grey;
+	
+}
+
+#prop
+{
+	font-family: arial;
+	text-decoration: none;	
+	box-shadow:4px 3px 3px #6B6A6A;
+    	margin-top: 20%;
+    	margin-bottom: 10%;
+    	margin-right: 2%;
+    	margin-left: 2%;
+	font-size: 20px;	
+	background-color: #008CBA;
+	color: white;
+}
+
+#graphical_prop
+{
+	font-family: arial;
+	text-decoration: none;	
+	box-shadow:4px 3px 3px #6B6A6A;
+    	margin-top: 20%;
+    	margin-bottom: 10%;
+    	margin-right: 2%;
+    	margin-left: 2%;
+	font-size: 20px;	
+	background-color: #008CBA;
+	color: white;
+}
+
+#object 
+{
+	font-family: arial;
+	box-shadow:4px 3px 3px #6B6A6A;
+	margin-right: 2%;
+    	margin-left: 2%;
+	text-decoration: none;	
+	font-size: 20px;	
+	background-color: #008CBA;
+	color: white;
+}
+
+
+
+
+/*CSS du Canvas a finir*/
+#canvas
+{
+	position: absolute;
+	border: 0px;
+	left: 20%;
+	width: 80%;
+	height: 100%;
+	overflow: auto;
+}
+
+
+/*CSS range */
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 80%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 9px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #3071A9;
+  border-radius: 7px;
+  border: 1px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 31px;
+  width: 16px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -12px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #3071A9;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 9px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #3071A9;
+  border-radius: 7px;
+  border: 1px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 31px;
+  width: 16px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 9px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #3071A9;
+  border: 1px solid #000000;
+  border-radius: 14px;
+  box-shadow: 1px 1px 1px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071A9;
+  border: 1px solid #000000;
+  border-radius: 14px;
+  box-shadow: 1px 1px 1px #000000;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 31px;
+  width: 16px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071A9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #3071A9;
+}											
