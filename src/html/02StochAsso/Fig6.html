@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Reference fault network and extracted synthetic 2D interpretations</title>
+        <link rel="stylesheet" type="text/css" href="style-gui.css">
+    </head>
+<body>
+	<canvas style="width: 1712px; height: 1296px;" height="1296" width="1712" id="canvas_visualisation"> </canvas>
+	<script src="three.min.js"></script>
+	<script src="TrackballControls.js"></script>
+	<script src="Lut.js"></script>
+
+	<script src='dat.gui.min.js'></script>
+
+	<script src="jscolor.js"></script>
+   	<script src="geology.js"></script>
+
+
+   	<script src="S11.js"></script>
+   	<script src="S12.js"></script>
+   	<script src="S13.js"></script>
+   	<script src="S14.js"></script>
+   	<script src="S15.js"></script>
+   	<script src="S16.js"></script>
+   	<script src="S17.js"></script>
+   	<script src="S18.js"></script>
+   	<script src="S19.js"></script>
+
+   	<script src="S20.js"></script>
+   	<script src="S21.js"></script>
+   	<script src="S22.js"></script>
+   	<script src="S23.js"></script>
+   	<script src="S24.js"></script>
+   	<script src="S25.js"></script>
+   	<script src="S26.js"></script>
+   	<script src="S27.js"></script>
+   	<script src="S28.js"></script>
+   	<script src="S29.js"></script>
+
+   	<script src="S30.js"></script>
+   	<script src="S31.js"></script>
+   	<script src="S32.js"></script>
+   	<script src="S33.js"></script>
+   	<script src="S34.js"></script>
+   	<script src="S35.js"></script>
+   	<script src="S36.js"></script>
+   	<script src="S37.js"></script>
+	<script src="S38.js"></script>
+
+	<script src="L3.js"></script>
+	<script src="L4.js"></script>
+	<script src="L5.js"></script>
+	<script src="L6.js"></script>
+
+<script> 
+
+var cur_index = 0 ;
+var ov = new ObjectViewer("canvas_visualisation") ; 
+
+
+SC_NAMES = [
+	'showScenario00',
+	'showScenario02',
+	'showScenario05',
+	'showScenario06',
+	'showScenario08',
+	'showScenario12',
+	'showScenario14',
+	'showScenario17'
+]
+
+ov.prepare(); 
+
+SURFACES = [S_11, S_12, S_13, S_14, S_15, S_16, S_17, S_18, S_19, 
+	  S_20, S_21, S_22, S_23, S_24, S_25, S_26, S_27, S_28, S_29, 
+	  S_30, S_31, S_32, S_33, S_34, S_35, S_36, S_37, S_38]
+
+COLORS = [0xffcaca, 0xcacaff, 0xcaffca,  0xcacaca, 0xffffca, 0xffcaff,  0xcaffff, 0xffffff, 0x0faff0, 0xe5e5cf,
+	0xffcaca, 0xcacaff, 0xcaffca,  0xcacaca, 0xffffca, 0xffcaff,  0xcaffff, 0xffffff, 0x0faff0, 0xe5e5cf,
+	0xffcaca, 0xcacaff, 0xcaffca,  0xcacaca, 0xffffca, 0xffcaff,  0xcaffff, 0xffffff, 0x0faff0, 0xe5e5cf]
+
+GROUPS = []
+
+var groupSurf = new THREE.Group();
+
+for (var s_ind=0; s_ind < SURFACES.length; ++s_ind  ){
+	groupSurf.add(ov.append_surface(SURFACES[s_ind], COLORS[s_ind]))
+}
+
+ov.scene.add(groupSurf)
+
+line3 = ov.append_lines(L_3, 0x000000);
+line4 = ov.append_lines(L_4, 0x000000);
+line4.visible=false;
+line5 = ov.append_lines(L_5, 0x000000);
+line5.visible=false;
+line6 = ov.append_lines(L_6, 0x000000);
+line6.visible=false;
+
+ov.set_camera_place();
+
+var gui = new dat.GUI();
+
+var viewChanger = function (obj) {
+	obj.visible = !obj.visible;
+};
+
+gui.add({ showSurfaces:function(){	viewChanger(groupSurf) }},	'showSurfaces');
+gui.add({ showLine3:function(){		viewChanger(line3) }},		'showLine3');
+gui.add({ showLine4:function(){		viewChanger(line4) }},		'showLine4');
+gui.add({ showLine5:function(){		viewChanger(line5) }},		'showLine5');
+gui.add({ showLine6:function(){		viewChanger(line6) }},		'showLine6');
+
+var show=function render(){ov.do_render(render);};
+show();
+</script>   
+</body></html>

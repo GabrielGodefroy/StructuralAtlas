@@ -3,9 +3,9 @@
 all:
 	@echo "Re-generating the website from the sources"
 
-	#01main
-	@cp -r	src/html/01main/	docs/
-	@cp		src/css/*		docs/
+	@cp -r	src/html/01main/		docs/
+	@cp -r	src/html/02StochAsso/	docs/
+	@cp		src/css/*				docs/
 
 	@/geology/GabrielGodefroy/installed_soft/pandoc-2.2.1/bin/pandoc \
 		-s		src/index.md \

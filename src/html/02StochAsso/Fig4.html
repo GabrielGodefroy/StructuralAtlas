@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>4 synthetic models</title>
+        <link rel="stylesheet" type="text/css" href="style-gui.css">
+    </head>
+<body>
+	<canvas style="width: 1712px; height: 1296px;" height="1296" width="1712" id="canvas_visualisation"> </canvas>
+	<script src="/geology/GabrielGodefroy/research/2-codes/1-libs/three.js-master/build/three.min.js"></script>
+	<script src="TrackballControls.js"></script>
+	<script src="Lut.js"></script>
+
+	<script src='dat.gui.min.js'></script>
+
+	<script src="jscolor.js"></script>
+   	<script src="geology.js"></script>
+
+   	<script src="lines.js"></script>
+
+   	<script src="surf0.js"></script>
+	<script src="surf2.js"></script>
+	<script src="surf5.js"></script>
+	<script src="surf6.js"></script>
+	<script src="surf8.js"></script>
+	<script src="surf12.js"></script>
+	<script src="surf14.js"></script>
+	<script src="surf17.js"></script>
+
+
+<script> 
+
+var cur_index = 0 ;
+var ov = new ObjectViewer("canvas_visualisation") ; 
+
+
+SC_NAMES = [
+	'showScenario00',
+	'showScenario02',
+	'showScenario05',
+	'showScenario06',
+	'showScenario08',
+	'showScenario12',
+	'showScenario14',
+	'showScenario17'
+]
+
+
+
+var viewChanger = function (scenario_ind) {
+	console.log(show,scenario_ind)
+	if(scenario_ind<0){
+		groupLineData.visible = !groupLineData.visible;
+		return ;
+	}
+
+	for(gr_ind =0 ; gr_ind < GROUPS.length;++gr_ind){
+		if(gr_ind!=scenario_ind){
+			GROUPS[gr_ind].visible = false
+		} else {
+			GROUPS[scenario_ind].visible = !GROUPS[scenario_ind].visible ;
+		}
+	}
+
+};
+
+
+ov.prepare(); 
+
+SURFACES = [surf_sc0, surf_sc2,surf_sc5,surf_sc6,surf_sc8,surf_sc12,surf_sc14,surf_sc17]
+
+COLORS =   [
+
+	// surf_sc00 = [ S_0_11, S_0_12, S_0_13, S_0_14, S_0_15, S_0_16, S_0_17, ]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff,       0xff9797, 0xff9797, 0xff9797],
+	// surf_sc02 = [ S_2_11, S_2_12, S_2_13, S_2_14, S_2_15, S_2_16, S_2_17, S_2_18, ]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff, 0xacacff, 0xff9797, 0xff9797, 0xff9797],
+	// surf_sc5 = [ S_5_11, S_5_12, S_5_13, S_5_14, S_5_15, S_5_16, ]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff, 0xacacff, 0xff9797, 0xacacff],
+	// surf_sc06 = [ S_6_11, S_6_12, S_6_13, S_6_14, S_6_15, ]
+	[0xacacff, 0xacacff,0xacacff, 0xff9797, 0xff9797],
+	// surf_sc08 = [ S_8_11, S_8_12, S_8_13, S_8_14, S_8_15, S_8_16, S_8_17, ]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff, 0xacacff, 0xff9797, 0xff9797],
+	// surf_sc12 = [0xacacff, 0xacacff, 0xff9797,0xacacff, 0xacacff, 0xff9797, 0xff9797]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff, 0xff9797, 0xff9797, 0xff9797],
+	// surf_sc14 = [ S_14_11, S_14_12, S_14_13, S_14_14, S_14_15, S_14_16, ]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff, 0xacacff, 0xff9797],
+	// surf_sc17 = [ S_17_11, S_17_12, S_17_13, S_17_14, S_17_15, S_17_16, S_17_17, ]
+	[0xacacff, 0xacacff, 0xacacff,0xacacff, 0xacacff,0xacacff, 0xff9797]
+
+]
+
+GROUPS = []
+
+for (var sc_ind = 0; sc_ind < SURFACES.length; sc_ind++) {
+	var groupSurf = new THREE.Group();
+
+	for (var surf_ind = 0; surf_ind < SURFACES[sc_ind].length; surf_ind++){
+		groupSurf.add(ov.append_surface(SURFACES[sc_ind][surf_ind], 
+			COLORS[sc_ind][surf_ind], "house" ))
+	}
+	ov.scene.add(groupSurf)
+	groupSurf.visible =  false;
+	GROUPS.push(groupSurf)
+}
+
+
+
+	var groupLineData = new THREE.Group();
+
+
+groupLineData.add(ov.append_lines(line_Ho, 0x000000))
+
+groupLineData.add(ov.append_lines(lineF00, 0xff9797))
+groupLineData.add(ov.append_lines(lineF01, 0xacacff))
+groupLineData.add(ov.append_lines(lineF02, 0xff9797))
+groupLineData.add(ov.append_lines(lineF03, 0xacacff))
+groupLineData.add(ov.append_lines(lineF04, 0xacacff))
+groupLineData.add(ov.append_lines(lineF05, 0xff9797))
+groupLineData.add(ov.append_lines(lineF06, 0xacacff))
+groupLineData.add(ov.append_lines(lineF07, 0xacacff))
+groupLineData.add(ov.append_lines(lineF08, 0xff9797))
+groupLineData.add(ov.append_lines(lineF09, 0xacacff))
+groupLineData.add(ov.append_lines(lineF10, 0xacacff))
+
+ov.scene.add(groupLineData)
+
+ov.set_camera_place();
+
+
+var gui = new dat.GUI();
+
+gui.add({ showData:function(){  viewChanger(-1) }}, 'showData');
+
+gui.add({ Scenario00:function(){viewChanger(0) }},'Scenario00');
+gui.add({ Scenario02:function(){viewChanger(1) }},'Scenario02');
+gui.add({ Scenario05:function(){viewChanger(2) }},'Scenario05');
+gui.add({ Scenario06:function(){viewChanger(3) }},'Scenario06');
+gui.add({ Scenario08:function(){viewChanger(4) }},'Scenario08');
+gui.add({ Scenario12:function(){viewChanger(5) }},'Scenario12');
+gui.add({ Scenario14:function(){viewChanger(6) }},'Scenario14');
+gui.add({ Scenario17:function(){viewChanger(7) }},'Scenario17');
+
+GROUPS[0].visible=true;
+
+
+var show=function render(){ov.do_render(render);};
+show();
+</script>   
+
+
+</body></html>
